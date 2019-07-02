@@ -33,7 +33,7 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
+node_modules
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -59,3 +59,16 @@ typings/
 
 # next.js build output
 .next
+
+*.install
+.merlin
+_build/
+_esy/
+_release/
+
+.DS_Store
+setup.txt
+setup.json
+
+# JUnit test output for CI
+*junit\.xml
