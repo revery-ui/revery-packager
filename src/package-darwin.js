@@ -67,9 +67,10 @@ module.exports = (config) => {
 
     console.log("Bundling dylibs...");
 
+    const executablePath = path.join(binaryDirectory, bundleInfo.primaryExecutable);
+
     // Run the 'dylibbundler' tool
-    util.shell(`${config.macBundlerPath} -b -x "${path.join(binaryDirectory, 
-        bundleInfo.primaryExecutable)}" -d "${frameworksDirectory}" -p "@executable_path/../Frameworks/" -cd`);
+    util.shell(`${config.macBundlerPath} -b -x "${executablePath}" -d "${frameworksDirectory}" -p "@executable_path/../Frameworks/" -cd`);
 
     // TODO:
     // - Tar package
