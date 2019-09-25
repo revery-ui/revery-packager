@@ -2,6 +2,7 @@
 //
 // Utilities for reading the bundle information from package json
 
+const path = require("path");
 const fs = require("fs-extra");
 
 const defaultBundleInfo = {
