@@ -106,7 +106,7 @@ module.exports = async (config) => {
         target: dmgTarget,
         specification: {
           title: config.bundleInfo.displayName,
-          background: config.bundleInfo.dmgBackground;
+          background: config.bundleInfo.dmgBackground,
           format: "ULFO",
           window: {
               size: {
