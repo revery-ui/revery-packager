@@ -1,26 +1,23 @@
 {
   "name": "revery-packager",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Helper utility for packaging Revery applications",
   "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "revery-packager": "./index.js",
+    "revery-package": "./index.js"
+  },
   "esy": {
-    "build": "refmterr dune build -p revery-packager",
-    "buildsInSource": "_build"
+    "build": "echo Installing revery-packager..."
   },
   "dependencies": {
-    "ocaml": "~4.7.0",
-    "@opam/dune": "1.7.3",
-    "@esy-ocaml/reason": ">= 3.4.0 < 3.5.0",
-    "refmterr": "*",
-    "rench": "^1.7.1",
-    "fs-extra": "^8.1.0"
+    "esy-macdylibbundler": "*",
+    "fs-extra": "*",
+    "yargs": "^14.0.0"
   },
   "scripts": {
-   "format": "bash -c \"refmt --in-place *.re\"",
-   "run": "esy x App"
-  },
-  "devDependencies": {
-    "ocaml": "~4.7.0",
-    "@opam/merlin": "*"
+    "format": "bash -c \"refmt --in-place *.re\"",
+    "run": "esy x App"
   }
 }
