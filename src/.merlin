@@ -1,4 +1,0 @@
-EXCLUDE_QUERY_DIR
-B ../_build/default/src/.ReveryPackager.eobjs/byte
-S .
-FLG -w -40

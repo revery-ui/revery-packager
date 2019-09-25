@@ -1,6 +1,0 @@
-(executable
-    (name ReveryPackager)
-    (package revery-packager)
-    (public_name revery-packager)
-    (libraries
-            ))
