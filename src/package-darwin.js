@@ -30,7 +30,7 @@ module.exports = (config) => {
     const bundleInfo = config.bundleInfo;
 
     // Create an Info.plist file for the app
-    const plist = {
+    const plistContents = {
       CFBundleName: bundleInfo.bundleName,
       CFBundleDisplayName: bundleInfo.displayName,
       CFBundleIdentifier: bundleInfo.bundleId,
