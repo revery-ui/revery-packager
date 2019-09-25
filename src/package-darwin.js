@@ -55,6 +55,7 @@ module.exports = (config) => {
     });
 
     filesToBeMoved.forEach((file) => {
+      console.log("Moving file: " + file);
       const fileSrc = path.join(binaryDirectory, file);
       const fileDest = path.join(resourcesDirectory, file);
       console.log(`Moving file from ${fileSrc} to ${fileDest}.`);
