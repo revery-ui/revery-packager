@@ -4,6 +4,26 @@ const path = require("path");
 const util = require("./util");
 const esy = require("./esy");
 
+const makeDmg = async (spec) => {
+  return new Promise((resolve, reject) => {
+    const ee = appdmg(spec);
+
+    ee.on('progress', (info) => {
+      if (info.type == 'step-begin') {
+        console.log("[DMG] " + info.title);
+      }
+    });
+
+    ee.on('finish', () => {
+      resolve();
+    });
+
+    ee.on('error', (err) => {
+      reject(err);
+    });
+  });
+};
+
 module.exports = async (config) => {
     const appName = config.bundleInfo.bundleName + ".App";
     
@@ -73,7 +93,48 @@ module.exports = async (config) => {
     util.shell(`${config.macBundlerPath} -b -x "${executablePath}" -d "${frameworksDirectory}" -p "@executable_path/../Frameworks/" -cd`);
 
     // TODO:
-    // - Tar package
     // - DMG package
+    
+    if(config.bundleInfo.packages.indexOf("tar") >= 0) {
+      const tarDest = `${config.releaseDir}/${config.bundleInfo.bundleName}-darwin.tar.gz`;
+      util.shell(`tar -C '${config.releaseDir}' -cvzf '${tardest}' ${appName}`);
+      console.log("** Created tar package: ${tarDest}");
+    }
+
+    if(config.bundleInfo.packages.indexOf("dmg") >= 0) { 
+      const dmgTarget = config.bundleInfo.bundleName + ".dmg";
+      const spec = {
+        target: dmgTarget;
+        specification: {
+          title: config.bundleInfo.displayName,
+          background: config.bundleInfo.dmgBackground;
+          format: "ULFO",
+          window: {
+              size: {
+                  width: 660,
+                  height: 400,
+              }
+          },
+          contents: [
+              {
+                  x: 180,
+                  y: 170,
+                  type: "file",
+                  path: appDirectory,
+              },
+              {
+                  x: 480,
+                  y: 170,
+                  type: "link",
+                  path: "/Applications"
+              }
+          ]
+        },
+      };
+
+      await makeDMG(spec);
+      console.log("** Created DMG: " + dmgTarget);
+    }
+
     console.log("OSX packaging complete!");
 };

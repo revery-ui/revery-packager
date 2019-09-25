@@ -17,6 +17,9 @@
     "yargs": "^14.0.0",
     "zip-a-folder": "0.0.9"
   },
+  "optionalDependencies": {
+    "appdmg": "*"
+  },
   "scripts": {
     "format": "bash -c \"refmt --in-place *.re\"",
     "run": "esy x App"
