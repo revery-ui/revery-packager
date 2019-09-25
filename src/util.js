@@ -20,4 +20,5 @@ const shell = (cmd) => {
 
 module.exports = {
     copy,
+    shell,
 };
