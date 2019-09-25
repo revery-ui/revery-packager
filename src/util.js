@@ -1,4 +1,4 @@
-const cp = require("cp");
+const cp = require("child_process");
 const fs = require("fs-extra");
 
 const copy = (source, dest) => {
