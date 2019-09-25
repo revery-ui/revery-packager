@@ -3,10 +3,9 @@
   "version": "1.0.6",
   "description": "Helper utility for packaging Revery applications",
   "license": "MIT",
-  "main": "index.js",
   "bin": {
-    "revery-packager": "./index.js",
-    "revery-package": "./index.js"
+    "revery-packager": "./cli.js",
+    "revery-package": "./cli.js"
   },
   "esy": {
     "build": "echo Installing revery-packager..."
