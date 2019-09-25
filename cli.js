@@ -75,6 +75,7 @@ const config = {
     packageInfo,
     binPath,
     reveryBinPath,
+    macBundlerPath,
 };
 
 if (process.platform == "win32") {
