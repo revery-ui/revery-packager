@@ -14,7 +14,8 @@
     "esy-macdylibbundler": "*",
     "fs-extra": "*",
     "plist": "^3.0.1",
-    "yargs": "^14.0.0"
+    "yargs": "^14.0.0",
+    "zip-a-folder": "0.0.9"
   },
   "scripts": {
     "format": "bash -c \"refmt --in-place *.re\"",

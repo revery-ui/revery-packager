@@ -18,7 +18,7 @@ const defaultBundleInfo = {
   mainExecutable: "App",
 
   // Packages - list of package formats to output:
-  packages: [],
+  packages: ["zip", "tar"],
 
   // Path to icon file
   // Windows: An .ico file is expected

@@ -48,6 +48,7 @@ console.log(" - Project bin path: " + binPath);
 console.log(" - Revery bin path: " + reveryBinPath);
 
 
+let macBundlerPath = null;
 if (process.platform == "darwin") {
     let macBundlerDir = esy.getEsyVariable(workingDirectory, "esy-macdylibbundler.bin");
     macBundlerPath = path.join(macBundlerDir, "dylibbundler");
@@ -78,10 +79,15 @@ const config = {
     macBundlerPath,
 };
 
-if (process.platform == "win32") {
-    require("./src/package-windows")(config);
-} else if (process.platform == "darwin") {
-    require("./src/package-darwin")(config);
-} else {
-    require("./src/package-linux")(config);
-}
+const run = async () => {
+
+    if (process.platform == "win32") {
+        await require("./src/package-windows")(config);
+    } else if (process.platform == "darwin") {
+        await require("./src/package-darwin")(config);
+    } else {
+        await require("./src/package-linux")(config);
+    }
+};
+
+run();

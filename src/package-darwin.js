@@ -4,7 +4,7 @@ const path = require("path");
 const util = require("./util");
 const esy = require("./esy");
 
-module.exports = (config) => {
+module.exports = async (config) => {
     const appName = config.bundleInfo.bundleName + ".App";
     
     console.log("Packaging for OSX: " + appName);
