@@ -49,12 +49,12 @@ console.log(" - Revery bin path: " + reveryBinPath);
 
 
 if (process.platform == "darwin") {
-    let macBundlerDir = esy.getEsyVariable(workingDirectory, "esy-macdyllibbundler.bin");
+    let macBundlerDir = esy.getEsyVariable(workingDirectory, "esy-macdylibbundler.bin");
     macBundlerPath = path.join(macBundlerDir, "dylibbundler");
 
     // TODO: Can we do something better, like bundle esy-dylibbundler with this project?
     if (!fs.existsSync(macBundlerPath)) {
-        throw "esy-dylibbundler must be a dependency of the project.";
+        throw "esy-macdylibbundler must be a dependency of the project.";
     }
     console.log(" - Mac bundler path: " + macBundlerPath);
 }
