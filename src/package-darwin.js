@@ -95,8 +95,8 @@ module.exports = async (config) => {
     // Bundle into tar package, if specified
     if(config.bundleInfo.packages.indexOf("tar") >= 0) {
       const tarDest = `${config.releaseDir}/${config.bundleInfo.bundleName}-darwin.tar.gz`;
-      util.shell(`tar -cvzf '${tarDest}' ${appDirectory}`);
-      console.log("** Created tar package: ${tarDest}");
+      util.shell(`tar -C '${config.platformReleaseDir}' -cvzf '${tarDest}' ${appName}`);
+      console.log(`** Created tar package: ${tarDest}`);
     }
 
     // Create DMG package, if specified
