@@ -22,7 +22,7 @@ const defaultBundleInfo = {
   packages: ["zip", "tar"],
 
    // MAC ONLY: The background to use for the dmg
-   dmgBackground: path.join(__dirname, "assets", "dmg-background.png"),
+   dmgBackground: path.join(__dirname, "..", "assets", "dmg-background.png"),
 
   // Path to icon file
   // Windows: An .ico file is expected

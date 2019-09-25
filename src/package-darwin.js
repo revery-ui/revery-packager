@@ -1,11 +1,13 @@
 const fs = require("fs-extra");
 const path = require("path");
+const appdmg = require("appdmg");
 
 const util = require("./util");
 const esy = require("./esy");
 
 const makeDmg = async (spec) => {
   return new Promise((resolve, reject) => {
+    console.dir(spec);
     const ee = appdmg(spec);
 
     ee.on('progress', (info) => {
@@ -82,7 +84,7 @@ module.exports = async (config) => {
       fs.moveSync(fileSrc, fileDest);
       const symlinkDest = path.join("../Resources", file);
       console.log(`Symlinking ${symlinkDest} -> ${fileSrc}`);
-      fs.ensureSymlink(symlinkDest, fileSrc);
+      fs.ensureSymlinkSync(symlinkDest, fileSrc);
     });
 
     console.log("Bundling dylibs...");
@@ -94,8 +96,9 @@ module.exports = async (config) => {
 
     // Bundle into tar package, if specified
     if(config.bundleInfo.packages.indexOf("tar") >= 0) {
-      const tarDest = `${config.releaseDir}/${config.bundleInfo.bundleName}-darwin.tar.gz`;
-      util.shell(`cd '${config.platformReleaseDir}' && tar -zcf '${tarDest}' ${appName}`);
+      const tarDest = `${config.bundleInfo.bundleName}-darwin.tar.gz`;
+      util.shell(`which tar`);
+      util.shell(`cd '${config.platformReleaseDir}' && tar -zcf '../${tarDest}' ${appName}`);
       console.log(`** Created tar package: ${tarDest}`);
     }
 
@@ -103,7 +106,8 @@ module.exports = async (config) => {
     if(config.bundleInfo.packages.indexOf("dmg") >= 0) { 
       const dmgTarget = config.bundleInfo.bundleName + ".dmg";
       const spec = {
-        target: dmgTarget,
+        target: path.join(config.releaseDir, dmgTarget),
+        basepath: config.platformReleaseDir,
         specification: {
           title: config.bundleInfo.displayName,
           background: config.bundleInfo.dmgBackground,
@@ -131,7 +135,7 @@ module.exports = async (config) => {
         },
       };
 
-      await makeDMG(spec);
+      await makeDmg(spec);
       console.log("** Created DMG: " + dmgTarget);
     }
 
