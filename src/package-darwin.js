@@ -51,7 +51,7 @@ module.exports = (config) => {
     // but symlink in, so that the executables can pretend they are available
 
     const filesToBeMoved = fs.readdirSync(binaryDirectory).filter((f) => {
-        return f != bundleInfo.primaryExecutable;
+        return f != bundleInfo.mainExecutable;
     });
 
     filesToBeMoved.forEach((file) => {
