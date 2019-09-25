@@ -27,7 +27,7 @@ const defaultBundleInfo = {
   // Path to icon file
   // Windows: An .ico file is expected
   // OSX: An .icns file is expected
-  iconFile: null,
+  iconFile: "default.ico",
 };
 
 const getBundleInfo = (packageJson) => {
