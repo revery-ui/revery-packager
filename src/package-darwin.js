@@ -92,19 +92,18 @@ module.exports = async (config) => {
     // Run the 'dylibbundler' tool
     util.shell(`${config.macBundlerPath} -b -x "${executablePath}" -d "${frameworksDirectory}" -p "@executable_path/../Frameworks/" -cd`);
 
-    // TODO:
-    // - DMG package
-    
+    // Bundle into tar package, if specified
     if(config.bundleInfo.packages.indexOf("tar") >= 0) {
       const tarDest = `${config.releaseDir}/${config.bundleInfo.bundleName}-darwin.tar.gz`;
       util.shell(`tar -C '${config.releaseDir}' -cvzf '${tardest}' ${appName}`);
       console.log("** Created tar package: ${tarDest}");
     }
 
+    // Create DMG package, if specified
     if(config.bundleInfo.packages.indexOf("dmg") >= 0) { 
       const dmgTarget = config.bundleInfo.bundleName + ".dmg";
       const spec = {
-        target: dmgTarget;
+        target: dmgTarget,
         specification: {
           title: config.bundleInfo.displayName,
           background: config.bundleInfo.dmgBackground;
