@@ -37,7 +37,7 @@ const getBundleInfo = (packageJson) => {
       platform = "linux"
    }
 
-   let commonBundleInfo = packageJson["revery-packager"];
+   let commonBundleInfo = packageJson["revery-packager"] || {};
 
    let platformBundleInfo = {};
 
