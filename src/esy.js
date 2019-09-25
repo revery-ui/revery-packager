@@ -1,10 +1,12 @@
 
 const cp = require("child_process");
 
+const esyCommand = process.platform == "win32" ? "esy.cmd" : "esy";
+
 const runEsyCommand = (workingDirectory, args) => {
     console.log("ESY: Running esy command: " + args.join(" ") + " in " + workingDirectory);
 
-    const result = cp.spawnSync("esy.cmd", args, { cwd: workingDirectory, env: process.env});
+    const result = cp.spawnSync(esyCommand, args, { cwd: workingDirectory, env: process.env});
     if (!result) {
         return null;
     } else if (!result.stdout) {
