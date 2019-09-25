@@ -1,3 +1,4 @@
+const cp = require("cp");
 const fs = require("fs-extra");
 
 const copy = (source, dest) => {
