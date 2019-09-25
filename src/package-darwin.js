@@ -65,6 +65,8 @@ module.exports = (config) => {
       fs.ensureSymlink(symlinkDest, fileSrc);
     });
 
+    console.log("Bundling dylibs...");
+
     // Run the 'dylibbundler' tool
     util.shell(`${config.macBundlerPath} -b -x "${path.join(binaryDirectory, 
         bundleInfo.primaryExecutable)}" -d "${frameworksDirectory}" -p "@executable_path/../Frameworks/" -cd`);
