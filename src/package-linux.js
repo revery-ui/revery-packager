@@ -30,6 +30,8 @@ module.exports = async (config) => {
     // appimagetool
 
     const tempFolder = path.join(os.tmpdir(), "revery-packager");
+    fs.mkdirpSync(tempFolder);
+    
     const linuxDeployAppImagePath = path.join(tempFolder, "linuxdeploy-x86_64.AppImage");
 
     console.log(" - Installing linuxdeploy...");
