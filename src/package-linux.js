@@ -15,12 +15,12 @@ Categories=${bundleInfo.appImageCategory};`;
 
 const appRun = (bundleInfo) => {
     const HERE = "${HERE}";
-    return `#!/bin/sh
-    HERE=$(dirname $(readlink -f "${0}"))
-    export PATH="${HERE}/usr/bin:$PATH"
-    export LD_LIBRARY_PATH="${HERE}/usr/lib/:$LD_LIBRARY_PATH"
-    ${HERE}/usr/bin/${bundleInfo.mainExecutable} $@
-    `;
+    return 
+`#!/bin/sh
+HERE=$(dirname $(readlink -f "${0}"))
+export PATH="${HERE}/usr/bin:$PATH"
+export LD_LIBRARY_PATH="${HERE}/usr/lib/:$LD_LIBRARY_PATH"
+${HERE}/usr/bin/${bundleInfo.mainExecutable} $@`;
 }
 
 module.exports = async (config) => {
@@ -91,7 +91,7 @@ module.exports = async (config) => {
 
     // Create app image
     if(config.bundleInfo.packages.indexOf("appimage") >= 0) {
-      const appImageDest = path.join(config.releaseDir, `${config.bundleInfo.appName}-x86_64.AppImage`);
+      const appImageDest = path.join(config.releaseDir, `${config.bundleInfo.bundleName}-x86_64.AppImage`);
       util.shell(`ARCH=x86_64 ${appImageToolPath} '${appDirFolder}' '${appImageDest}'`);
       console.log(`** Created appImage: ${appImageDest}`);
     }
