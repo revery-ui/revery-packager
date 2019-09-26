@@ -8,7 +8,7 @@ const esy = require("./esy");
 const desktopFile = (bundleInfo) =>
 `[Desktop Entry]
 Name=${bundleInfo.bundleName}
-Exec=AppRun
+Exec=${bundleInfo.mainExecutable}
 Icon=Icon
 Type=${bundleInfo.appImageType}
 Categories=${bundleInfo.appImageCategory}
@@ -66,6 +66,8 @@ module.exports = async (config) => {
 
     const iconFilePath = path.join(staging, "Icon.png");
     util.copy(config.bundleInfo.iconFile, iconFilePath);
+
+    util.copy(appRunStagingPath, path.join(appDirFolder, "AppRun"));
 
     fs.mkdirpSync(appDirFolder);
     fs.mkdirpSync(binFolder);
