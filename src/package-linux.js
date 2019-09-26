@@ -70,7 +70,7 @@ module.exports = async (config) => {
     fs.mkdirpSync(appDirFolder);
     fs.mkdirpSync(binFolder);
     
-    const mainBinaryPath = path.join(stagingBin, bundleInfo.mainExecutable);
+    const mainBinaryPath = path.join(stagingBin, config.bundleInfo.mainExecutable);
     // Run linuxdeploy on the app image binaries
     util.shell(`${linuxDeployAppImagePath} -e '${mainBinaryPath}' --appdir '${appDirFolder}' -d '${desktopStagingPath}' -i '${iconFilePath}`);
 
