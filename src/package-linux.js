@@ -16,10 +16,10 @@ Categories=${bundleInfo.appImageCategory};`;
 const appRun = (bundleInfo) => {
 const HERE = "${HERE}";
 return `#!/bin/sh
-HERE=$(dirname $(readlink -f "${0}"))
+HERE=$(dirname $(readlink -f "\${0}"))
 export PATH="${HERE}/usr/bin:$PATH"
 export LD_LIBRARY_PATH="${HERE}/usr/lib/:$LD_LIBRARY_PATH"
-${HERE}/usr/bin/${bundleInfo.mainExecutable} $@`;
+"${HERE}"/usr/bin/${bundleInfo.mainExecutable} $@`;
 }
 
 module.exports = async (config) => {
