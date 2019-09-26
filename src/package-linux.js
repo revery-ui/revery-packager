@@ -1,3 +1,4 @@
+const fs = require("fs-extra");
 const os = require("os");
 const path = require("path");
 
@@ -36,7 +37,7 @@ module.exports = async (config) => {
     util.shell(`chmod +x '${linuxDeployAppImagePath}'`);
     
     console.log(" - Installing appimagetool...");
-    const appImageToolPath = path.join(tempFolder, "appimagetool-x86_64.AppImage);
+    const appImageToolPath = path.join(tempFolder, "appimagetool-x86_64.AppImage");
 
     const appDirName = config.bundleInfo.bundleName + ".AppDir";
     const appDirFolder = path.join(config.platformReleaseDir, appDirName);
