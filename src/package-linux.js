@@ -73,10 +73,9 @@ module.exports = async (config) => {
     fs.mkdirpSync(binFolder);
     
     const mainBinaryPath = path.join(stagingBin, config.bundleInfo.mainExecutable);
+    util.copy(stagingBin, binFolder);
     // Run linuxdeploy on the app image binaries
     util.shell(`${linuxDeployAppImagePath} -e '${mainBinaryPath}' --appdir '${appDirFolder}' -d '${desktopStagingPath}' -i '${iconFilePath}'`);
-
-    util.copy(stagingBin, binFolder);
 
     // Clean up
     fs.removeSync(tempFolder);
