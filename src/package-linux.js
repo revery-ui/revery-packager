@@ -77,7 +77,7 @@ module.exports = async (config) => {
     util.copy(stagingBin, binFolder);
 
     // Clean up
-    fs.rimrafSync(staging);
+    fs.removeSync(tempFolder);
 
     console.log("**Created app folder: " + appDirFolder);
 };
