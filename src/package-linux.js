@@ -78,8 +78,22 @@ module.exports = async (config) => {
     // Run linuxdeploy on the app image binaries
     util.shell(`${linuxDeployAppImagePath} -e '${mainBinaryPath}' --appdir '${appDirFolder}' -d '${desktopStagingPath}' -i '${iconFilePath}'`);
 
+    console.log("**Created app folder: " + appDirFolder);
+
+    // Create tar
+    if(config.bundleInfo.packages.indexOf("tar") >= 0) {
+      const tarDest = `${config.bundleInfo.bundleName}-linux.tar.gz`;
+      util.shell(`cd '${config.platformReleaseDir}' && tar -zcf '../${tarDest}' ${appDirName}`);
+      console.log(`** Created tar package: ${tarDest}`);
+    }
+
+    // Create app image
+    if(config.bundleInfo.packages.indexOf("appimage") >= 0) {
+      const appImageDest = path.join(config.releaseDir, `${config.bundleInfo.appName}-x86_64.AppImage`);
+      util.shell(`ARCH=x86_64 ${appImageToolPath} '${appDirFolder}' '${appImageDest}'`);
+      console.log(`** Created appImage: ${appImageDest}`);
+    }
+
     // Clean up
     fs.removeSync(tempFolder);
-
-    console.log("**Created app folder: " + appDirFolder);
 };
