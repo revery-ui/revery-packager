@@ -27,6 +27,55 @@ You'll find the release artifacts at the `_release` folder.
 
 ## Configuration
 
+You can customize the behavior of the packager by adding a `revery-packager` section to your `package.json`, like:
+
+__package.json__
+```json
+  "name": "revery-quick-start",
+  "version": "1.3.0",
+  "description": "Revery quickstart",
+  "license": "MIT",
+  "esy": {
+    "build": "refmterr dune build -p App",
+    "buildsInSource": "_build"
+  },
+  "revery-packager": {
+    "bundleName": "ExampleApp",
+    "bundleId": "com.example.app",
+    "displayName": "Revery Example App",
+    "mainExecutable": "App",
+    "windows": {
+      "packages": ["zip"],
+      "iconFile": "assets/icon.ico"
+    },
+    "darwin": {
+      "packages": ["tar", "dmg"],
+      "iconFile": "assets/icon.icns"
+    },
+    "linux": {
+      "packages": ["tar", "appimage"]
+    }
+  },
+  ...
+```
+
+The following properties are configurable:
+
+- __`bundleName`__ - The bundle name of the application. Used for manifests and for the filename.
+- __`bundleId`__ - An identifier for the application. Used as the `CFBundleIdentifier` for Mac.
+- __`displayName`__ - Display name of the application, used for installers, desktop entries, etc.
+- __`mainExecutable`__ - The entry point for the application. There should be no `.exe` suffix added.
+- __`packages`__ - per-platform list of packages to build:
+- __`dmgBackground`__ - __MAC-ONLY__ - background to use for DMG installer
+- __`appImageType`__ - __LINUX-ONLY__ - type to use in the desktop entry for the AppImage
+- __`appImageCategory`__ - __LINUX_ONLY__ - category to use for the desktop entry for the AppImage
+- __`iconFile`__ 
+  - __Windows__ - an `.ico` file to use for the executable
+  - __Linux__ - a `.png` file to use the desktop entry
+  - __Mac__ - an `.icns` file to use for the app icon
+
+You can also specify per-platform settings by using the `windows`, `darwin`, and `linux` sections - you probably want to do this for settings like `iconFile`.
+
 ## Roadmap
 
 - Windows
