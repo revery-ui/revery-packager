@@ -42,7 +42,9 @@ module.exports = async (config) => {
     
     console.log(" - Installing appimagetool...");
     const appImageToolPath = path.join(tempFolder, "appimagetool-x86_64.AppImage");
-
+    util.shell(`wget -O '${appImageToolPath}' https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage`);
+    util.shell(`chmod +x '${appImageToolPath}'`);
+    
     const appDirName = config.bundleInfo.bundleName + ".AppDir";
     const appDirFolder = path.join(config.platformReleaseDir, appDirName);
 
