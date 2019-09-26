@@ -68,6 +68,7 @@ module.exports = async (config) => {
     util.copy(config.bundleInfo.iconFile, iconFilePath);
 
     util.copy(appRunStagingPath, path.join(appDirFolder, "AppRun"));
+    util.shell(`chmod +x '${path.join(appDirFolder, "AppRun")}`);
 
     fs.mkdirpSync(appDirFolder);
     fs.mkdirpSync(binFolder);
