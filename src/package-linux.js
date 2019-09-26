@@ -8,7 +8,7 @@ const esy = require("./esy");
 const desktopFile = (bundleInfo) =>
 `[Desktop Entry]
 Name=${bundleInfo.bundleName}
-Exec=${bundleInfo.mainExecutable}
+Exec=AppRun
 Icon=Icon
 Type=${bundleInfo.appImageType}
 Categories=${bundleInfo.appImageCategory}
