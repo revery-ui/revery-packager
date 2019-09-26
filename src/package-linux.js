@@ -30,7 +30,7 @@ module.exports = async (config) => {
     // appimagetool
 
     const tempFolder = path.join(os.tmpdir(), "revery-packager");
-    const linuxDeployAppImagePath = path.join(tempFolder, "linuxdeploy-x86_64.AppImage);
+    const linuxDeployAppImagePath = path.join(tempFolder, "linuxdeploy-x86_64.AppImage");
 
     console.log(" - Installing linuxdeploy...");
     util.shell(`wget -O '${linuxDeployAppImagePath}' https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage`);
