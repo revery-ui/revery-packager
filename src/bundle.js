@@ -31,7 +31,7 @@ const defaultBundleInfo = {
   // Path to icon file
   // Windows: An .ico file is expected
   // OSX: An .icns file is expected
-  iconFile: path.join(__dirname, "..", "assets", "revery-icon.png");
+  iconFile: path.join(__dirname, "..", "assets", "revery-icon.png"),
 };
 
 const getBundleInfo = (packageJson) => {
