@@ -22,12 +22,16 @@ const defaultBundleInfo = {
   packages: ["zip", "tar"],
 
    // MAC ONLY: The background to use for the dmg
-   dmgBackground: path.join(__dirname, "..", "assets", "dmg-background.png"),
+  dmgBackground: path.join(__dirname, "..", "assets", "dmg-background.png"),
+
+  
+  appImageType: "Application",
+  appImageCategory: "Development",
 
   // Path to icon file
   // Windows: An .ico file is expected
   // OSX: An .icns file is expected
-  iconFile: "default.ico",
+  iconFile: path.join(__dirname, "..", "assets", "revery-icon.png");
 };
 
 const getBundleInfo = (packageJson) => {
