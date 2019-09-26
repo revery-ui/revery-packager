@@ -11,8 +11,7 @@ Name=${bundleInfo.bundleName}
 Exec=${bundleInfo.mainExecutable}
 Icon=Icon
 Type=${bundleInfo.appImageType}
-Categories=${bundleInfo.appImageCategory}
-`;
+Categories=${bundleInfo.appImageCategory};`;
 
 const appRun = (bundleInfo) => {
     const HERE = "${HERE}";
@@ -80,6 +79,7 @@ module.exports = async (config) => {
     // Run linuxdeploy on the app image binaries
     util.shell(`${linuxDeployAppImagePath} -e '${mainBinaryPath}' --appdir '${appDirFolder}' -d '${desktopStagingPath}' -i '${iconFilePath}'`);
 
+    util.copy(config.bundleInfo.iconFile, path.join(appDirFolder, "Icon.png"));
     console.log("**Created app folder: " + appDirFolder);
 
     // Create tar
