@@ -19,7 +19,7 @@ const defaultBundleInfo = {
   mainExecutable: "App",
 
   // Packages - list of package formats to output:
-  packages: ["zip", "tar"],
+  packages: ["zip", "tar", "dmg", "appimage"],
 
    // MAC ONLY: The background to use for the dmg
   dmgBackground: path.join(__dirname, "..", "assets", "dmg-background.png"),
