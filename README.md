@@ -25,7 +25,7 @@ npm install -g revery-packager`
 
 You'll find the release artifacts for the current platform in the `_release` folder.
 
-> __NOTE:__ Today, `revery-packager` doesn't support 'cross-platform' packaging - meaning you need to run `revery-packager` on each platform you want to distribute builds. We recommend [Azure Devops](https://devops.azure.com) as a way to run the build and get packages for all platforms - see our [revery-quick-start  pipeline](https://github.com/revery-ui/revery-quick-start/blob/master/azure-pipelines.yml) for an example.
+> __NOTE:__ Today, `revery-packager` doesn't support 'cross-platform' packaging - meaning you need to run `revery-packager` on each platform you want to distribute builds. We recommend [Azure Devops CI](https://devops.azure.com) as a way build and get packages for all platforms - see our [revery-quick-start  pipeline](https://github.com/revery-ui/revery-quick-start/blob/master/azure-pipelines.yml) for an example.
 
 ## Configuration
 
