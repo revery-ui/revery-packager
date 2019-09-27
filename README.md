@@ -23,7 +23,9 @@ npm install -g revery-packager`
 1) Ensure your Revery project is built and up-to-date (`esy install`, `esy build`).
 2) Run `revery-packager` at the root of your Revery project.
 
-You'll find the release artifacts at the `_release` folder.
+You'll find the release artifacts for the current platform in the `_release` folder.
+
+> __NOTE:__ Today, `revery-packager` doesn't support 'cross-platform' packaging - meaning you need to run `revery-packager` on each platform you wish to distribute builds. We recommend [Azure Devops CI](https://devops.azure.com) as a way build and get packages for all platforms - see our [revery-quick-start  pipeline](https://github.com/revery-ui/revery-quick-start/blob/master/azure-pipelines.yml) for an example.
 
 ## Configuration
 
