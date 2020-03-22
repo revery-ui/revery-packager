@@ -24,25 +24,25 @@ export LD_LIBRARY_PATH="${HERE}/usr/lib/:$LD_LIBRARY_PATH"
 
 module.exports = async (config) => {
     console.log("Packaging for linux.");
-    
+
     // Create a temp folder so that we can download some extra tools:
     // linuxdeploy
     // appimagetool
 
     const tempFolder = path.join(os.tmpdir(), "revery-packager");
     fs.mkdirpSync(tempFolder);
-    
+
     const linuxDeployAppImagePath = path.join(tempFolder, "linuxdeploy-x86_64.AppImage");
 
     console.log(" - Installing linuxdeploy...");
     util.shell(`wget -O '${linuxDeployAppImagePath}' https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage`);
     util.shell(`chmod +x '${linuxDeployAppImagePath}'`);
-    
+
     console.log(" - Installing appimagetool...");
     const appImageToolPath = path.join(tempFolder, "appimagetool-x86_64.AppImage");
     util.shell(`wget -O '${appImageToolPath}' https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage`);
     util.shell(`chmod +x '${appImageToolPath}'`);
-    
+
     const appDirName = config.bundleInfo.bundleName + ".AppDir";
     const appDirFolder = path.join(config.platformReleaseDir, appDirName);
 
@@ -53,7 +53,7 @@ module.exports = async (config) => {
 
     const stagingBin = path.join(staging, "bin");
     fs.mkdirpSync(stagingBin);
-    
+
     // Copy binaries to staging, and run linux deploy
     util.copy(config.binPath, stagingBin);
 
@@ -72,7 +72,7 @@ module.exports = async (config) => {
 
     fs.mkdirpSync(appDirFolder);
     fs.mkdirpSync(binFolder);
-    
+
     const mainBinaryPath = path.join(stagingBin, config.bundleInfo.mainExecutable);
     util.copy(stagingBin, binFolder);
     // Run linuxdeploy on the app image binaries
@@ -82,18 +82,18 @@ module.exports = async (config) => {
     console.log("**Created app folder: " + appDirFolder);
 
     // Create tar
-    if(config.bundleInfo.packages.indexOf("tar") >= 0) {
-      const tarDest = `${config.bundleInfo.bundleName}-linux.tar.gz`;
-      util.shell(`cd '${config.platformReleaseDir}' && tar -zcf '../${tarDest}' ${appDirName}`);
-      console.log(`** Created tar package: ${tarDest}`);
-    }
+    if(config.bundleInfo.packages.indexOf("tar") >= 0) {
+      const tarDest = `${config.bundleInfo.bundleName}-linux.tar.gz`;
+      util.shell(`cd '${config.platformReleaseDir}' && tar -zcf '../${tarDest}' ${appDirName}`);
+      console.log(`** Created tar package: ${tarDest}`);
+    }
 
     // Create app image
-    if(config.bundleInfo.packages.indexOf("appimage") >= 0) {
+    if(config.bundleInfo.packages.indexOf("appimage") >= 0) {
       const appImageDest = path.join(config.releaseDir, `${config.bundleInfo.bundleName}-x86_64.AppImage`);
-      util.shell(`ARCH=x86_64 ${appImageToolPath} '${appDirFolder}' '${appImageDest}'`);
-      console.log(`** Created appImage: ${appImageDest}`);
-    }
+      util.shell(`ARCH=x86_64 ${appImageToolPath} '${appDirFolder}' '${appImageDest}'`);
+      console.log(`** Created appImage: ${appImageDest}`);
+    }
 
     // Clean up
     fs.removeSync(tempFolder);

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-
-const fs = require("fs-extra");
+
+const fs = require("fs-extra");
 const path = require("path");
-console.log("Revery Packager v" + require("./package.json").version);
+console.log("Revery Packager v" + require("./package.json").version);
 
 const args = require("yargs")
     .argv;
@@ -47,7 +47,6 @@ const reveryBinPath = esy.getEsyVariable(workingDirectory, "revery.bin");
 console.log(" - Project bin path: " + binPath);
 console.log(" - Revery bin path: " + reveryBinPath);
 
-
 let macBundlerPath = null;
 if (process.platform == "darwin") {
     let macBundlerDir = esy.getEsyVariable(workingDirectory, "esy-macdylibbundler.bin");
@@ -80,7 +79,6 @@ const config = {
 };
 
 const run = async () => {
-
     if (process.platform == "win32") {
         await require("./src/package-windows")(config);
     } else if (process.platform == "darwin") {
