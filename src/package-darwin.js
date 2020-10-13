@@ -32,7 +32,7 @@ module.exports = async (config) => {
   console.log("Packaging for OSX: " + appName);
 
   // The MacOS app folder structure looks like this:
-  // - MyApp.App
+  // - MyApp.app
   //   - Contents
   //     - Resources (non-executable resources)
   //     - MacOS (executable reosurces)
